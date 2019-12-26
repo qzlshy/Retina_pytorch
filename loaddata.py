@@ -41,9 +41,9 @@ class COCO_Dataset(Dataset):
             idx = idx.tolist()
         img=self.coco.loadImgs(self.imge_ids[idx])[0]['file_name']
         img_name = os.path.join(self.root_dir, img)
-        image = io.imread(img_name)
-        if len(image.shape) == 2:
-            image = color.gray2rgb(image).astype(np.uint8)
+        image = Image.open(img_name)
+        if image.mode == 'L':
+            image = image.convert("RGB")
         if self.transform:
             image=self.transform(image)
         annotations_ids = self.coco.getAnnIds(imgIds=self.imge_ids[idx], iscrowd=False)
