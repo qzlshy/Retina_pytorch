@@ -3,7 +3,6 @@ import os
 from PIL import Image
 import random
 import torch
-from skimage import io, transform, color
 from pycocotools.coco import COCO
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms, utils
